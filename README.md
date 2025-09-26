@@ -1,4 +1,4 @@
-#Kubernetes Microservices Voting Application
+# Kubernetes Microservices Voting Application
 
 This project demonstrates the deployment of a classic multi-container, microservices-based voting application onto a Kubernetes cluster. The architecture includes five distinct services, persistent data, and network routing managed by an NGINX Ingress controller.
 Architecture

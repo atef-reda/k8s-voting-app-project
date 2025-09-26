@@ -1,9 +1,9 @@
-# Kubernetes Microservices Voting Application
+Kubernetes Microservices Voting Application
 
 This project demonstrates the deployment of a classic multi-container, microservices-based voting application onto a Kubernetes cluster. The architecture includes five distinct services, persistent data, and network routing managed by an NGINX Ingress controller.
-Architecture
+🏛️ Architecture
 
-The application is composed of five main microservices:
+The application is composed of five main microservices that work together:
 
     Vote App: A Python web frontend for users to cast votes.
 
@@ -15,7 +15,7 @@ The application is composed of five main microservices:
 
     Result App: A Node.js web frontend to display the aggregated voting results.
 
-Prerequisites
+✅ Prerequisites
 
 Before you begin, ensure you have the following tools installed and configured:
 
@@ -25,28 +25,25 @@ Before you begin, ensure you have the following tools installed and configured:
 
     helm (the package manager for Kubernetes).
 
-Deployment Steps
+🚀 Deployment Steps
 
-All required Kubernetes manifests (Deployments, Services, and Ingress) are located in the manifests/ directory.
+All required Kubernetes manifests (Deployments, Services, and Ingress) should be located in a manifests/ directory.
 1. Deploy the Application Components
 
 First, deploy all the core services and deployments for the voting application.
 
-# Navigate to the directory containing all the YAML files
-cd manifests/
-
 # Apply all manifests to create the deployments and services
-kubectl apply -f .
+kubectl apply -f manifests/
 
 2. Install an NGINX Ingress Controller
 
-To route external traffic to your application, you need an Ingress controller. You can use either the Minikube addon or install one via Helm.
+To route external traffic to your application, you need an Ingress controller.
 
 Option A: Minikube Addon (Easiest for Minikube)
 
 minikube addons enable ingress
 
-Option B: Install with Helm (Recommended for non-Minikube clusters)
+Option B: Install with Helm (Recommended for other clusters)
 
 # Add the official ingress-nginx repository
 helm repo add ingress-nginx [https://kubernetes.github.io/ingress-nginx](https://kubernetes.github.io/ingress-nginx)
@@ -57,11 +54,11 @@ helm install nginx-ingress ingress-nginx/ingress-nginx --namespace ingress-nginx
 
 3. Apply the Ingress Resource
 
-Once the Ingress controller is running, apply the Ingress manifest file included in the manifests/ directory. This contains the routing rules for the vote and result applications.
+Once the Ingress controller is running, apply the ingress.yaml manifest. This contains the routing rules for the vote and result applications.
 
-kubectl apply -f ingress.yaml
+kubectl apply -f manifests/ingress.yaml
 
-Accessing the Application
+🌐 Accessing the Application
 
 There are two primary ways to access the deployed application.
 Method 1: Using Ingress (Recommended)
@@ -100,15 +97,7 @@ You can bypass the Ingress and connect directly to the services.
 
     Get the Service NodePorts:
 
-    kubectl get servicegit push -u origin main
-    To https://github.com/atef-reda/Voting-APP-K8S.git
-     ! [rejected]        main -> main (fetch first)
-    error: failed to push some refs to 'https://github.com/atef-reda/Voting-APP-K8S.git'
-    hint: Updates were rejected because the remote contains work that you do
-    hint: not have locally. This is usually caused by another repository pushing
-    hint: to the same ref. You may want to first integrate the remote changes
-    hint: (e.g., 'git pull ...') before pushing again.
-    hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+    kubectl get service
 
     Look for the high-numbered ports for vote-svc and result-svc.
 
@@ -118,12 +107,13 @@ You can bypass the Ingress and connect directly to the services.
 
         To see results: http://<NODE_IP>:<RESULT_NODE_PORT>
 
-Cleanup
+🧹 Cleanup
 
 To remove all the resources created by this project, run the following commands:
 
-# Delete all application resources
+# Delete all application resources from the manifests folder
 kubectl delete -f manifests/
 
 # Uninstall the Helm release (if you used Helm)
 helm uninstall nginx-ingress -n ingress-nginx
+

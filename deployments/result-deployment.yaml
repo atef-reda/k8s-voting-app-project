@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: result-deployment
+  name: result-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: result-deployment
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: result-deployment
+    spec:
+      containers:
+      - image: dockersamples/examplevotingapp_result
+        name: examplevotingapp-result-wzbzs
+        resources: {}
+status: {}

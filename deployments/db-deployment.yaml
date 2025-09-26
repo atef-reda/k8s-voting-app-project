@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: db-deployment
+  name: db-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: db-deployment
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: db-deployment
+    spec:
+      containers:
+      - image: postgres
+        name: postgres
+        resources: {}
+        env:
+        - name: POSTGRES_PASSWORD
+          value: "postgres" # Change this in production
+status: {}
